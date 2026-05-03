@@ -138,4 +138,4 @@ vim.keymap.set("n", "<leader>o", ":.lua<cr>")
 vim.keymap.set("v", "<leader>o", ":lua<cr>")
 
 -- Keymap to run make
-vim.keymap.set("n", "<leader>m", ":Compile<CR>", { desc = "Run compile-mode command", silent = true})
+-- vim.keymap.set("n", "<leader>m", ":Compile<CR>", { desc = "Run compile-mode command", silent = true})
