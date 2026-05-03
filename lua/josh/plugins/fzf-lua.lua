@@ -12,16 +12,4 @@ return {
       vim.keymap.set("n", "<C-g>",  "<Cmd>FzfLua git_files<CR>",    { desc = "Search project" })
     end
   },
-  {
-    "farmergreg/vim-lastplace",
-    enabled = false,
-    event = "BufReadPost",
-  },
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = { "VeryLazy" },
-  --   config = function()
-  --     require("ibl").setup()
-  --   end,
-  -- },
 }
