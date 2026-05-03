@@ -13,4 +13,13 @@ require "josh.core.autocmds"
 require "josh.lazy"
 
 vim.cmd [[ colorscheme monolith ]]
-
+-- vim.cmd [[
+--   set termguicolors
+--   set bg=dark
+--   colorscheme quiet
+--   highlight Keyword gui=bold
+--   highlight Comment gui=italic
+--   highlight Constant guifg=#999999
+--   highlight NormalFloat guibg=#333333
+-- ]]
+--
