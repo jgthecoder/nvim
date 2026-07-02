@@ -17,7 +17,7 @@ return {
 						},
 					},
 					plugins = {
-						twilight = { enabled = true },
+						twilight = { enabled = false },
 					},
 				})
 			end, { desc = "Toggle zen mode", silent = true, noremap = true })

@@ -17,6 +17,7 @@ vim.g.loaded_zipPlugin = 1
 vim.g.loaded_rplugin = 1
 vim.g.loaded_shada_plugin = 1
 
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.g.netrw_liststyle = 1
 vim.g.netrw_sort_by = "size"
@@ -36,13 +37,13 @@ set.fillchars = { eob = " "}
 set.termguicolors = true
 set.ignorecase = true
 set.swapfile = false
-set.autoindent = true
-set.expandtab = false
+set.autoindent = false
+set.expandtab = true
 set.laststatus = 2
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
-set.shiftround = true
+set.shiftround = false
 -- set.listchars = "tab: ,multispace:|   "
 -- set.list = true
 set.number = true
@@ -61,6 +62,7 @@ set.cmdheight = 0
 set.splitright = true
 set.splitbelow = true
 set.shortmess:append("Ic")
+set.showtabline =  1
 set.ruler = false
 
 vim.filetype.add({

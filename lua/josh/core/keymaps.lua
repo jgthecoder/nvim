@@ -2,6 +2,9 @@ local opts = { silent = true, noremap = true }
 vim.g.mapleader = vim.keycode("<space>")
 vim.g.maplocalleader = "\\"
 
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- Window navigation
 -- vim.keymap.set("n", "<C-l>", ":wincmd l<cr>", opts)
 -- vim.keymap.set("n", "<C-h>", ":wincmd h<cr>", opts)
@@ -35,19 +38,17 @@ vim.keymap.set("n", "<leader>r", ":Run ")
 
 -- vim.keymap.set("n", "<leader>e", ":Lex<cr>")
 
-vim.keymap.set("n", "<tab>", ":bn<cr>", opts)
-vim.keymap.set("n", "<s-tab>", ":bprev<cr>", opts)
+vim.keymap.set("n", "<tab>", ":tabnext<cr>", opts)
+vim.keymap.set("n", "<s-tab>", ":tabprev<cr>", opts)
+vim.keymap.set("n", "<leader>tn", ":tabnew<cr>", opts)
+vim.keymap.set("n", "<leader>td", ":tabclose<cr>", opts)
 
-vim.keymap.set("n", "<S-h>", ":tabpre<cr>", opts)
-vim.keymap.set("n", "<S-l>", ":tabnext<cr>", opts)
+-- vim.keymap.set("n", "<S-h>", ":tabpre<cr>", opts)
+-- vim.keymap.set("n", "<S-l>", ":tabnext<cr>", opts)
 
 -- Make life easier
 -- vim.keymap.set("n", ";", ":")
 vim.keymap.set("i", "jk", "<esc>")
-
--- Move lines up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
 -- Quick source
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
@@ -138,4 +139,4 @@ vim.keymap.set("n", "<leader>o", ":.lua<cr>")
 vim.keymap.set("v", "<leader>o", ":lua<cr>")
 
 -- Keymap to run make
--- vim.keymap.set("n", "<leader>m", ":Compile<CR>", { desc = "Run compile-mode command", silent = true})
+vim.keymap.set("n", "<leader>m", ":make<CR>", { desc = "Compile and run current file", silent = true})

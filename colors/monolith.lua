@@ -17,7 +17,7 @@ end
 -- ── Palette ───────────────────────────────────────────────────────────────────
 -- All tones are desaturated. No hue is vivid — contrast comes from luminance.
 local p = {
-  bg         = "#111111", -- near-black canvas
+  bg         = "#181818", -- near-black canvas
   bg_subtle  = "#191919", -- slightly lifted surface (statusline, float bg)
   bg_select  = "#222222", -- visual selection, cursor line
   border     = "#2a2a2a", -- splits, borders, column rules
@@ -36,7 +36,7 @@ local p = {
 hi("Normal",         { fg = p.fg_base,   bg = "None" }) -- p.bg
 hi("NormalNC",       { fg = p.fg_base,   bg = "None" }) -- p.bg
 hi("NormalFloat",    { fg = p.fg_base,   bg = "None" }) -- p.bg_subtle
-hi("FloatBorder",    { fg = p.border,    bg = "None" }) -- p.bg_subtle
+hi("FloatBorder",    { fg = p.border,    bg = "None"}) -- p.bg_subtle
 hi("FloatTitle",     { fg = p.fg_mute,   bg = "None" }) -- p.bg_subtle
 
 hi("Cursor",         { fg = p.bg,        bg = p.fg_bright })
@@ -46,11 +46,12 @@ hi("CursorLine",     { bg = p.bg_select })
 hi("CursorColumn",   { bg = p.bg_select })
 hi("CursorLineNr",   { fg = p.keyword,   bg = p.bg_select, bold = true })
 
-hi("LineNr",         { fg = p.fg_dim })
-hi("LineNrAbove",    { fg = p.fg_dim })
-hi("LineNrBelow",    { fg = p.fg_dim })
-hi("SignColumn",     { fg = p.fg_dim,    bg = "None" }) -- p.bg
-hi("FoldColumn",     { fg = p.fg_dim,    bg = "None" })
+-- Changed column backgrounds from "None" to explicit p.bg for solid framing
+hi("LineNr",         { fg = p.fg_dim,    bg = p.bg })
+hi("LineNrAbove",    { fg = p.fg_dim,    bg = p.bg })
+hi("LineNrBelow",    { fg = p.fg_dim,    bg = p.bg })
+hi("SignColumn",     { fg = p.fg_dim,    bg = p.bg })
+hi("FoldColumn",     { fg = p.fg_dim,    bg = p.bg })
 hi("Folded",         { fg = p.fg_mute,   bg = p.bg_subtle })
 
 hi("StatusLine",     { fg = p.fg_mute,   bg = p.bg_subtle })
@@ -114,15 +115,12 @@ hi("QuickFixLine",   { bg = p.bg_select })
 hi("qfLineNr",       { fg = p.fg_mute })
 
 -- ── Syntax — the three highlighted groups ────────────────────────────────────
--- Everything else in code is fg_base (neutral). Only these three emerge.
-
--- Keywords / control flow
 hi("Keyword",        { fg = p.keyword, bold = true })
 hi("Statement",      { fg = p.keyword, bold = true })
 hi("Conditional",    { fg = p.keyword, bold = true })
 hi("Repeat",         { fg = p.keyword, bold = true })
 hi("Label",          { fg = p.keyword, bold = true })
-hi("Operator",       { fg = p.fg_base }) -- operators stay neutral
+hi("Operator",       { fg = p.fg_base })
 hi("Exception",      { fg = p.keyword, bold = true })
 hi("Include",        { fg = p.keyword, bold = true })
 hi("Define",         { fg = p.keyword, bold = true })
@@ -132,22 +130,19 @@ hi("PreCondit",      { fg = p.keyword, bold = true })
 hi("StorageClass",   { fg = p.keyword, bold = true })
 hi("Structure",      { fg = p.keyword, bold = true })
 hi("Typedef",        { fg = p.keyword, bold = true })
-hi("Type",           { fg = p.fg_base }) -- types stay neutral
+hi("Type",           { fg = p.keyword, bold = true })
 hi("Boolean",        { fg = p.keyword, bold = true })
 
--- Strings / literals
 hi("String",         { fg = p.string })
 hi("Character",      { fg = p.string })
-hi("Number",         { fg = p.fg_base }) -- numbers stay neutral
+hi("Number",         { fg = p.fg_base })
 hi("Float",          { fg = p.fg_base })
 hi("SpecialChar",    { fg = p.string })
 
--- Comments
 hi("Comment",        { fg = p.comment, italic = true })
 hi("SpecialComment", { fg = p.comment, italic = true })
 hi("Todo",           { fg = p.fg_mute,  bg = p.bg_subtle, bold = true })
 
--- Everything else: neutral
 hi("Identifier",     { fg = p.fg_base })
 hi("Function",       { fg = p.fg_base })
 hi("Constant",       { fg = p.fg_base })
@@ -160,9 +155,6 @@ hi("Ignore",         { fg = p.fg_dim })
 hi("Error",          { fg = p.fg_bright, bold = true, underline = true })
 
 -- ── Treesitter ────────────────────────────────────────────────────────────────
--- Map TS captures to the same three-tone philosophy.
-
--- Keywords
 hi("@keyword",                    { fg = p.keyword, bold = true })
 hi("@keyword.import",             { fg = p.keyword, bold = true })
 hi("@keyword.operator",           { fg = p.fg_base })
@@ -180,11 +172,11 @@ hi("@repeat",                     { fg = p.keyword, bold = true })
 hi("@include",                    { fg = p.keyword, bold = true })
 hi("@exception",                  { fg = p.keyword, bold = true })
 hi("@type.builtin",               { fg = p.keyword, bold = true })
+hi("@type",                       { fg = p.keyword, bold = true })
 hi("@storageclass",               { fg = p.keyword, bold = true })
 hi("@attribute",                  { fg = p.keyword, bold = true })
 hi("@attribute.builtin",          { fg = p.keyword, bold = true })
 
--- Strings
 hi("@string",                     { link = "String" })
 hi("@string.documentation",       { link = "String" })
 hi("@string.regexp",              { link = "String" })
@@ -195,7 +187,6 @@ hi("@string.special.path",        { link = "String" })
 hi("@character",                  { link = "String" })
 hi("@character.special",          { link = "String" })
 
--- Comments
 hi("@comment",                    { link = "Comment" })
 hi("@comment.documentation",      { link = "Comment" })
 hi("@comment.error",              { fg = p.comment, italic = true })
@@ -203,7 +194,6 @@ hi("@comment.warning",            { fg = p.comment, italic = true })
 hi("@comment.todo",               { link = "Todo" })
 hi("@comment.note",               { link = "Comment" })
 
--- Everything else: neutral
 hi("@variable",                   { fg = p.fg_base })
 hi("@variable.builtin",           { fg = p.fg_base })
 hi("@variable.parameter",         { fg = p.fg_base })
@@ -218,8 +208,6 @@ hi("@function.call",              { fg = p.fg_base })
 hi("@function.method",            { fg = p.fg_base })
 hi("@function.method.call",       { fg = p.fg_base })
 hi("@constructor",                { fg = p.fg_base })
-hi("@type",                       { fg = p.fg_base })
-hi("@type.definition",            { fg = p.fg_base })
 hi("@type.qualifier",             { fg = p.keyword, bold = true })
 hi("@number",                     { fg = p.fg_base })
 hi("@number.float",               { fg = p.fg_base })
@@ -262,14 +250,14 @@ hi("@lsp.type.property",          { fg = p.fg_base })
 hi("@lsp.type.function",          { fg = p.fg_base })
 hi("@lsp.type.method",            { fg = p.fg_base })
 hi("@lsp.type.macro",             { fg = p.keyword, bold = true })
-hi("@lsp.type.namespace",         { fg = p.fg_base })
-hi("@lsp.type.type",              { fg = p.fg_base })
-hi("@lsp.type.typeParameter",     { fg = p.fg_base })
-hi("@lsp.type.struct",            { fg = p.fg_base })
-hi("@lsp.type.enum",              { fg = p.fg_base })
-hi("@lsp.type.enumMember",        { fg = p.fg_base })
-hi("@lsp.type.interface",         { fg = p.fg_base })
-hi("@lsp.type.class",             { fg = p.fg_base })
+hi("@lsp.type.namespace",         { fg = p.keyword, bold = true })
+hi("@lsp.type.type",              { fg = p.keyword, bold = true })
+hi("@lsp.type.typeParameter",     { fg = p.keyword, bold = true })
+hi("@lsp.type.struct",            { fg = p.keyword, bold = true })
+hi("@lsp.type.enum",              { fg = p.keyword, bold = true })
+hi("@lsp.type.enumMember",        { fg = p.keyword, bold = true })
+hi("@lsp.type.interface",         { fg = p.keyword, bold = true })
+hi("@lsp.type.class",             { fg = p.keyword, bold = true })
 hi("@lsp.type.decorator",         { fg = p.keyword, bold = true })
 hi("@lsp.type.operator",          { fg = p.fg_base })
 hi("@lsp.type.modifier",          { fg = p.keyword, bold = true })
@@ -292,10 +280,10 @@ hi("DiagnosticVirtualTextWarn",   { fg = "#4d4a38", italic = true })
 hi("DiagnosticVirtualTextInfo",   { fg = p.fg_dim,  italic = true })
 hi("DiagnosticVirtualTextHint",   { fg = p.fg_dim,  italic = true })
 
-hi("DiagnosticSignError",         { fg = "#7a5555" })
-hi("DiagnosticSignWarn",          { fg = "#6a6450" })
-hi("DiagnosticSignInfo",          { fg = p.fg_mute })
-hi("DiagnosticSignHint",          { fg = p.fg_dim })
+hi("DiagnosticSignError",         { fg = "#7a5555", bg = p.bg })
+hi("DiagnosticSignWarn",          { fg = "#6a6450", bg = p.bg })
+hi("DiagnosticSignInfo",          { fg = p.fg_mute, bg = p.bg })
+hi("DiagnosticSignHint",          { fg = p.fg_dim,  bg = p.bg })
 
 -- ── LSP UI ────────────────────────────────────────────────────────────────────
 hi("LspReferenceText",            { bg = p.bg_select })
@@ -337,12 +325,12 @@ hi("NvimTreeGitNew",          { fg = "#6a8c66" })
 hi("NvimTreeGitDeleted",      { fg = "#8c6666" })
 
 -- ── gitsigns ──────────────────────────────────────────────────────────────────
-hi("GitSignsAdd",             { fg = "#4a6a46" })
-hi("GitSignsChange",          { fg = "#4a5f78" })
-hi("GitSignsDelete",          { fg = "#6a4646" })
-hi("GitSignsAddNr",           { fg = "#4a6a46" })
-hi("GitSignsChangeNr",        { fg = "#4a5f78" })
-hi("GitSignsDeleteNr",        { fg = "#6a4646" })
+hi("GitSignsAdd",             { fg = "#4a6a46", bg = p.bg })
+hi("GitSignsChange",          { fg = "#4a5f78", bg = p.bg })
+hi("GitSignsDelete",          { fg = "#6a4646", bg = p.bg })
+hi("GitSignsAddNr",           { fg = "#4a6a46", bg = p.bg })
+hi("GitSignsChangeNr",        { fg = "#4a5f78", bg = p.bg })
+hi("GitSignsDeleteNr",        { fg = "#6a4646", bg = p.bg })
 hi("GitSignsAddLn",           { bg = "#1a2218" })
 hi("GitSignsChangeLn",        { bg = "#1a1f28" })
 hi("GitSignsDeleteLn",        { bg = "#221818" })
@@ -368,3 +356,30 @@ hi("CmpItemAbbrMatchFuzzy", { fg = p.fg_bright, bold = true })
 hi("CmpItemAbbrDeprecated", { fg = p.fg_dim,    strikethrough = true })
 hi("CmpItemMenu",           { fg = p.fg_dim,    italic = true })
 hi("CmpItemKind",           { fg = p.fg_mute })
+
+-- ── Lualine Integration ───────────────────────────────────────────────────────
+-- Muted stone palette: blends completely into the editor frame to preserve focus.
+package.loaded["lualine.themes.monolith"] = {
+  normal = {
+    a = { fg = p.fg_base, bg = p.bg_select, bold = true },
+    b = { fg = p.fg_mute, bg = p.bg_subtle },
+    c = { fg = p.fg_dim,  bg = p.bg_subtle },
+  },
+  insert = {
+    a = { fg = p.fg_bright, bg = p.bg_select, bold = true },
+    b = { fg = p.fg_mute,   bg = p.bg_subtle },
+  },
+  visual = {
+    a = { fg = p.comment, bg = p.bg_select, bold = true },
+    b = { fg = p.fg_mute, bg = p.bg_subtle },
+  },
+  replace = {
+    a = { fg = p.fg_bright, bg = p.bg_select, bold = true },
+    b = { fg = p.fg_mute,   bg = p.bg_subtle },
+  },
+  inactive = {
+    a = { fg = p.fg_dim, bg = p.bg_subtle },
+    b = { fg = p.fg_dim, bg = p.bg_subtle },
+    c = { fg = p.fg_dim, bg = p.bg_subtle },
+  },
+}
