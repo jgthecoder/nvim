@@ -140,3 +140,18 @@ vim.keymap.set("v", "<leader>o", ":lua<cr>")
 
 -- Keymap to run make
 vim.keymap.set("n", "<leader>m", ":make<CR>", { desc = "Compile and run current file", silent = true})
+
+vim.keymap.set("n", "<leader>lc", function()
+  local file = vim.fn.expand("%")
+  local pdf = vim.fn.expand("%:r") .. ".pdf"
+
+  vim.fn.jobstart({ "pdflatex", "-interaction=nonstopmode", file }, {
+    on_exit = function(_, code)
+      if code == 0 then
+        vim.fn.jobstart({ "zathura", pdf })
+      else
+        vim.notify("pdflatex compilation failed", vim.log.levels.ERROR)
+      end
+    end,
+  })
+end, { desc = "Compile LaTeX and open PDF" })

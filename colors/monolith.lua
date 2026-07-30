@@ -47,12 +47,12 @@ hi("CursorColumn",   { bg = p.bg_select })
 hi("CursorLineNr",   { fg = p.keyword,   bg = p.bg_select, bold = true })
 
 -- Changed column backgrounds from "None" to explicit p.bg for solid framing
-hi("LineNr",         { fg = p.fg_dim,    bg = p.bg })
-hi("LineNrAbove",    { fg = p.fg_dim,    bg = p.bg })
-hi("LineNrBelow",    { fg = p.fg_dim,    bg = p.bg })
-hi("SignColumn",     { fg = p.fg_dim,    bg = p.bg })
-hi("FoldColumn",     { fg = p.fg_dim,    bg = p.bg })
-hi("Folded",         { fg = p.fg_mute,   bg = p.bg_subtle })
+hi("LineNr",         { fg = p.fg_dim,    bg = "None" }) --- p.bg
+hi("LineNrAbove",    { fg = p.fg_dim,    bg = "None" }) --- p.bg
+hi("LineNrBelow",    { fg = p.fg_dim,    bg = "None" }) --- p.bg
+hi("SignColumn",     { fg = p.fg_dim,    bg = "None" }) --- p.bg
+hi("FoldColumn",     { fg = p.fg_dim,    bg = "None" }) --- p.bg
+hi("Folded",         { fg = p.fg_mute,   bg = "None" }) --- p.bg_subtle
 
 hi("StatusLine",     { fg = p.fg_mute,   bg = p.bg_subtle })
 hi("StatusLineNC",   { fg = p.fg_dim,    bg = p.bg_subtle })

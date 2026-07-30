@@ -31,10 +31,11 @@ vim.g.have_nerd_font = true
 set.guicursor = "i:block"
 -- set.colorcolumn = "80"
 set.showcmd = false
-set.numberwidth = 4
+set.numberwidth = 2
 set.signcolumn = "yes"
 set.fillchars = { eob = " "}
 set.termguicolors = true
+set.clipboard = 'unnamedplus'
 set.ignorecase = true
 set.swapfile = false
 set.autoindent = false
@@ -58,12 +59,11 @@ set.undofile = true
 set.completeopt = { "menuone", "popup", "noinsert" }
 set.winborder = "rounded"
 set.hlsearch = false
-set.cmdheight = 0
 set.splitright = true
 set.splitbelow = true
 set.shortmess:append("Ic")
 set.showtabline =  1
-set.ruler = false
+set.ruler = true
 
 vim.filetype.add({
   extension = {
@@ -89,3 +89,7 @@ vim.diagnostic.config({
     },
   } or {},
 })
+
+vim.cmd('filetype plugin indent on')
+vim.cmd('syntax on')
+vim.cmd('filetype detect')

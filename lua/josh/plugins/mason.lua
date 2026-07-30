@@ -1,5 +1,6 @@
 return {
 	"mason-org/mason-lspconfig.nvim",
+    enabled = false,
 	opts = {
 		ensure_installed = {
 			"bashls",
@@ -29,6 +30,6 @@ return {
 				},
 			},
 		},
-		"neovim/nvim-lspconfig",
+		-- "neovim/nvim-lspconfig",
 	},
 }

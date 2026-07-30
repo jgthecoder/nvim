@@ -3,16 +3,10 @@ vim.api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] }
 
 local augroup = vim.api.nvim_create_augroup("custom-augroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "help", "man", "compilation" },
+  pattern = { "oil", "help", "man", "compilation" },
   group = augroup,
   desc = "Use q to close the window",
   command = "nnoremap <buffer> q <cmd>quit<cr>",
-})
-
-vim.api.nvim_create_autocmd('UIEnter', {
-  callback = function()
-    vim.o.clipboard = 'unnamedplus'
-  end,
 })
 
 vim.api.nvim_create_user_command("Run", function(opts)
@@ -158,3 +152,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 
 })
+
+vim.cmd [[
+  let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+  map <leader>v :VimwikiIndex<CR>
+  let g:vimwiki_list = [{'path': '~/.local/share/nvim/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+  autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
+  autocmd BufRead,BufNewFile *.tex set filetype=tex
+]]
