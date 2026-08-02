@@ -17,6 +17,8 @@ vim.g.loaded_zipPlugin = 1
 vim.g.loaded_rplugin = 1
 vim.g.loaded_shada_plugin = 1
 
+vim.g.goyo_width = 65
+
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.g.netrw_liststyle = 1
