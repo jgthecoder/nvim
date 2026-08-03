@@ -157,3 +157,6 @@ vim.keymap.set("n", "<leader>lc", function()
 end, { desc = "Compile LaTeX and open PDF" })
 
 vim.keymap.set("n", "<leader>g", ":Goyo<cr>", { silent = true, noremap = true})
+
+-- Git
+vim.keymap.set("n", "<leader>G", ":Git<cr>", { silent = true, noremap = true})
