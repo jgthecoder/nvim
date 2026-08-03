@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] }
 
 local augroup = vim.api.nvim_create_augroup("custom-augroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "oil", "help", "man", "compilation" },
+  pattern = { "fugitive", "oil", "help", "man", "compilation" },
   group = augroup,
   desc = "Use q to close the window",
   command = "nnoremap <buffer> q <cmd>quit<cr>",
