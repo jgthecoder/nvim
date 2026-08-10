@@ -27,8 +27,10 @@ local p = {
   fg_bright  = "#e8e8e8", -- brightest neutral — used sparingly
 
   -- The only three "colors" — all muted, contrasting via hue + luminance:
-  keyword    = "#a8b8d0", -- desaturated steel-blue  → keywords, control flow
-  string     = "#9db89a", -- desaturated sage-green  → string literals
+  -- keyword    = "#a8b8d0", -- desaturated steel-blue  → keywords, control flow
+  keyword    = "#7C9CBF", -- desaturated steel-blue  → keywords, control flow
+  -- string     = "#9db89a", -- desaturated sage-green  → string literals
+  string     = "#8FA876", -- desaturated sage-green  → string literals
   comment    = "#5a5a5a", -- mid-grey, clearly below fg_base → comments
 }
 

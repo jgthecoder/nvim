@@ -3,18 +3,12 @@ return {
     enabled = false,
 	opts = {
 		ensure_installed = {
-			"bashls",
-			"tinymist",
+			-- "bashls",
 			"clangd",
-			"lua_ls",
-			-- "rust_analyzer",
-			"html",
-			"cssls",
+			-- "lua_ls",
 			-- "tailwindcss",
-			"pyright",
-			"ruff",
-			"emmet_language_server",
-			-- "gopls",
+			-- "pyright",
+			-- "emmet_language_server",
 		},
 	},
 	dependencies = {
